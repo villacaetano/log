@@ -73,14 +73,26 @@ html[data-theme=dark] .badge.high{background:#482523;color:#f0aaa4}
 .modal textarea{min-height:120px}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}
 footer{text-align:center;color:var(--muted);font-size:12px;padding:30px 0 10px}
 @media(max-width:900px){.grid{grid-template-columns:1fr}.filterbar{grid-template-columns:1fr 1fr 1fr}.filterbar input{grid-column:1/-1}}
-@media(max-width:600px){.container{padding:14px}header{padding:18px;flex-direction:column;align-items:flex-start}.header-right{text-align:left;width:100%}.header-controls{justify-content:flex-start}.logo{width:190px}.page-head{align-items:flex-start;flex-direction:column}.actions{width:100%}.actions .btn{flex:1;justify-content:center}.filterbar{grid-template-columns:1fr}.filterbar input{grid-column:auto}.row2{grid-template-columns:1fr}.issue-top{flex-direction:column}.badges{justify-content:flex-start}}
-</style>
+@media(max-width:600px){.container{padding:10px}header{padding:18px;flex-direction:column;align-items:flex-start}.header-right{text-align:left;width:100%}.header-controls{justify-content:flex-start}.logo{width:190px}.page-head{align-items:flex-start;flex-direction:column}.actions{width:100%}.actions .btn{flex:1;justify-content:center}.filterbar{grid-template-columns:1fr}.filterbar input{grid-column:auto}.row2{grid-template-columns:1fr}.issue-top{flex-direction:column}.badges{justify-content:flex-start}}
+
+@media(max-width:600px){
+  header{padding:12px 14px;border-radius:14px;gap:8px}.logo{width:150px;max-height:55px}
+  .header-right{width:auto;align-self:flex-end}.header-controls{gap:7px}.status{font-size:11px;padding:5px 9px}.last-sync{font-size:10px;margin-top:3px}
+  .page-head{margin:10px 0 8px}.page-head h1{font-size:22px;margin:0}.subtitle{font-size:11px;line-height:1.35}
+  .page-head .actions{margin-top:7px}.page-head .actions .btn{width:100%;padding:8px 10px;font-size:12px}
+  .grid{display:block}.grid>.card:nth-child(2){display:none}
+  .card{padding:13px;border-radius:14px}.card-title{font-size:16px;margin-bottom:4px}.card-sub{font-size:11px;line-height:1.35;margin-bottom:9px}
+  .field{margin-bottom:8px}.field label{font-size:10px;margin-bottom:4px}input,select,textarea{font-size:12px;padding:8px 9px;border-radius:8px}textarea{min-height:60px}
+  .row2{gap:8px}.form-actions{margin-top:8px}.form-actions .btn{padding:9px 11px;font-size:12px}
+  footer{padding:12px 0 5px;font-size:10px}
+}
+''</style>
 </head>
 <body>
 <main class="container">
 <div id="error" class="error"></div>
 <header>
-  <img id="siteLogo" class="logo" src="assets/logo-black.png" alt="Villa Caetano">
+  <img id="siteLogo" class="logo" src="assets/black-logo.png" alt="Villa Caetano">
   <div class="header-right">
     <div class="header-controls">
       <button id="themeToggle" class="theme-toggle" type="button">☾</button>
@@ -141,11 +153,11 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:30px 0 10px}
 
 <div id="deleteModal" class="modal-backdrop">
   <div class="modal delete-modal">
-    <h2>Delete issue?</h2>
-    <p>This will permanently remove the issue from the register. This cannot be undone.</p>
+    <h2>Delete item?</h2>
+    <p>This will permanently remove this item from the register. This cannot be undone.</p>
     <div class="modal-actions">
       <button class="btn" id="cancelDelete">Cancel</button>
-      <button class="btn primary confirm-delete" id="confirmDelete">Delete Issue</button>
+      <button class="btn primary confirm-delete" id="confirmDelete">Delete Item</button>
     </div>
   </div>
 </div>
@@ -304,7 +316,7 @@ confirmDelete.onclick=async()=>{
 (function(){
   const saved=localStorage.getItem("vc-theme"),dark= saved==="dark"||(saved===null&&matchMedia("(prefers-color-scheme: dark)").matches);
   document.documentElement.setAttribute("data-theme",dark?"dark":"light");
-  function update(){const d=document.documentElement.getAttribute("data-theme")==="dark";themeToggle.textContent=d?"☀":"☾";siteLogo.src=d?"assets/logo-white.png":"assets/logo-black.png"}
+  function update(){const d=document.documentElement.getAttribute("data-theme")==="dark";themeToggle.textContent=d?"☀":"☾";siteLogo.src=d?"assets/logo-white.png":"assets/black-logo.png"}
   update();themeToggle.onclick=()=>{const d=document.documentElement.getAttribute("data-theme")==="dark";const n=d?"light":"dark";document.documentElement.setAttribute("data-theme",n);localStorage.setItem("vc-theme",n);update()};
 })();
 dateReported.value=today();
