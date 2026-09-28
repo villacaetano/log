@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Villa Caetano — Open Log</title>
+<style>
+:root{--bg:#f5f5f2;--card:#fff;--text:#202321;--muted:#777b78;--border:#e5e5e0;--accent:#234d3c;--soft:#eaf1ed;--shadow:0 8px 30px rgba(20,25,22,.06)}
+html[data-theme=dark]{--bg:#151816;--card:#1e2421;--text:#eef2ef;--muted:#9ba59f;--border:#343d38;--accent:#9bc5af;--soft:#26352d;--shadow:0 8px 30px rgba(0,0,0,.2)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.container{max-width:1100px;margin:auto;padding:28px}
+header,.report{background:var(--card);border:1px solid var(--border);box-shadow:var(--shadow);border-radius:18px}
+header{padding:22px 26px;display:flex;justify-content:space-between;align-items:center}.logo{width:210px;max-height:80px;object-fit:contain;object-position:left}.actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.btn{padding:9px 13px;border:1px solid var(--border);border-radius:10px;background:var(--card);color:var(--text);font-weight:700;text-decoration:none;cursor:pointer}.btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+h1{font-size:28px;margin:28px 0 5px}.sub{color:var(--muted);font-size:13px;margin-bottom:18px}.report{padding:22px}.report-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.count{font-weight:800;color:var(--accent)}.issue{padding:19px 0;border-bottom:1px solid var(--border);overflow:hidden}.issue:last-child{border-bottom:0}.top{display:flex;justify-content:space-between;align-items:flex-start;gap:18px}.top>div:first-child{min-width:0}.title{font-size:17px;font-weight:800;line-height:1.35;overflow-wrap:anywhere;word-break:break-word}.meta{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.45;overflow-wrap:anywhere}.badge{display:inline-block;padding:5px 9px;border-radius:999px;background:var(--soft);color:var(--accent);font-size:11px;font-weight:800}.high{background:#f7e1de;color:#8e332d}.medium{background:#f1ead6;color:#79611b}.low{background:var(--soft)}.desc{font-size:13px;line-height:1.6;margin-top:12px;overflow-wrap:anywhere;word-break:break-word;white-space:pre-wrap}.resolution{margin-top:10px;padding:10px 12px;overflow-wrap:anywhere;word-break:break-word;white-space:pre-wrap;background:var(--soft);border-left:3px solid var(--accent);font-size:12px}.empty{text-align:center;color:var(--muted);padding:40px}.error{display:none;color:#a33b35;background:#fff1f0;border:1px solid #f0c8c5;padding:12px;border-radius:10px;margin-top:15px}
+@media(max-width:700px){.container{padding:14px}header{padding:18px;flex-direction:column;align-items:flex-start;gap:15px}.actions{width:100%;justify-content:flex-start}.top{flex-direction:column}.top>div:last-child{width:100%}}
+</style>
+</head>
+<body>
+<main class="container">
+<header><img id="logo" class="logo" src="assets/logo-black.png" alt="Villa Caetano"><div class="actions"><a class="btn" href="log.html">← Log</a><button class="btn" id="theme">☾</button><button class="btn" id="shareBtn" type="button">Share</button><button class="btn primary" onclick="window.print()">Print</button></div></header>
+<h1>Open Log</h1><div class="sub">Current issues and action points requiring attention.</div>
+<div id="error" class="error"></div>
+<section class="report"><div class="report-head"><strong>Open Log Report</strong><span class="count" id="count">Loading...</span></div><div id="list"></div></section>
+</main>
+<script>
+const SUPABASE_URL="https://tynimykxncdzdxupqhcx.supabase.co",SUPABASE_KEY="sb_publishable_KbjJrEnhwk4pUvsvA16NfA_2R90lxlB",H={"apikey":SUPABASE_KEY,"Authorization":`Bearer ${SUPABASE_KEY}`,"Content-Type":"application/json"};
+const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fmt=v=>v?new Date(v+"T00:00:00").toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}):"—";
+function shareReport(){
+  const count=document.getElementById("count").textContent;
+  const text=`Villa Caetano — Open Log Report\n${count}\n\nView the current log here:`;
+  if(navigator.share){
+    navigator.share({title:"Villa Caetano — Open Log",text,url:location.href}).catch(()=>{});
+  }else if(navigator.clipboard){
+    navigator.clipboard.writeText(`${text}\n${location.href}`).then(()=>{
+      const b=document.getElementById("shareBtn"),old=b.textContent;b.textContent="Link copied";setTimeout(()=>b.textContent=old,1800);
+    }).catch(()=>window.prompt("Copy this report link:",location.href));
+  }else{
+    window.open(`https://wa.me/?text=${encodeURIComponent(text+"\n"+location.href)}`,"_blank");
+  }
+}
+document.getElementById("shareBtn").addEventListener("click",shareReport);
+async function load(){try{
+ const r=await fetch(`${SUPABASE_URL}/rest/v1/issues?select=*&status=neq.Resolved&order=priority.asc,date_reported.asc`,{headers:H});if(!r.ok)throw Error(await r.text());
+ const a=await r.json();document.getElementById("count").textContent=`${a.length} open item${a.length===1?"":"s"}`;
+ document.getElementById("list").innerHTML=a.length?a.map(i=>`<article class="issue"><div class="top"><div><div class="title">${esc(i.title)}</div><div class="meta">${esc(i.entry_type||"Issue")} · Reported ${fmt(i.date_reported)} · Due ${fmt(i.due_date)}</div></div><div><span class="badge ${String(i.priority).toLowerCase()}">${esc(i.priority)} priority</span> <span class="badge">${esc(i.status)}</span></div></div>${i.description?`<div class="desc">${esc(i.description)}</div>`:""}</article>`).join(""):`<div class="empty">No open items. Everything is currently resolved.</div>`;
+}catch(e){document.getElementById("count").textContent="Unable to load";document.getElementById("error").style.display="block";document.getElementById("error").textContent="Unable to load the open log report: "+e.message;console.error(e)}}
+const savedTheme=localStorage.getItem("vc-theme");
+const darkTheme=savedTheme==="dark"||(savedTheme===null&&matchMedia("(prefers-color-scheme:dark)").matches);
+document.documentElement.setAttribute("data-theme",darkTheme?"dark":"light");
+function updateTheme(){
+  const dark=document.documentElement.getAttribute("data-theme")==="dark";
+  document.getElementById("theme").textContent=dark?"☀":"☾";
+  document.getElementById("logo").src=dark?"assets/logo-white.png":"assets/logo-black.png";
+}
+updateTheme();
+document.getElementById("theme").onclick=()=>{
+  const dark=document.documentElement.getAttribute("data-theme")==="dark";
+  const next=dark?"light":"dark";
+  document.documentElement.setAttribute("data-theme",next);
+  localStorage.setItem("vc-theme",next);
+  updateTheme();
+};
+load();
+</script>
+</body></html>
