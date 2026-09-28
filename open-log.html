@@ -14,16 +14,16 @@ h1{font-size:28px;margin:28px 0 5px}.sub{color:var(--muted);font-size:13px;margi
 
 @media(max-width:600px){
   .container{padding:10px}.report{padding:12px;border-radius:14px}header{padding:12px 14px;border-radius:14px;gap:8px}.logo{width:150px;max-height:55px}
-  .actions{gap:6px}.actions .btn{padding:7px 9px;font-size:11px}.share-main{font-size:11px}
+  .actions{gap:5px}.actions .btn{padding:6px 8px;font-size:10px}.share-main{font-size:10px}
   h1{font-size:21px;margin:13px 0 3px}.sub{font-size:11px;margin-bottom:9px}.report-head{margin-bottom:8px;font-size:12px}.count{font-size:11px}.issue{padding:11px 0}.title{font-size:13px}.meta{font-size:10px;margin-top:3px}.badge{padding:4px 6px;font-size:9px}.desc{font-size:11px;line-height:1.4;margin-top:7px}
 }
 @media print{header .actions,.sub{display:none!important}.container{max-width:none;padding:0}.report{box-shadow:none;border:0}body{background:#fff}}
 ''</style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
 <main class="container">
-<header><img id="logo" class="logo" src="assets/black-logo.png" alt="Villa Caetano"><div class="actions"><a class="btn" href="index.html">← Log</a><button class="btn" id="theme">☾</button><button class="btn primary share-main" id="shareBtn" type="button">↗ Share PDF</button><button class="btn" onclick="window.print()">Print</button></div></header>
+<header><img id="logo" class="logo" src="assets/black-logo.png" alt="Villa Caetano"><div class="actions"><a class="btn" href="index.html">← Log</a><button class="btn" id="theme">☾</button><button class="btn primary share-main" id="shareImageBtn" type="button">↗ Share Image</button><button class="btn" id="shareTextBtn" type="button">☷ Share Text</button><button class="btn" onclick="window.print()">Print</button></div></header>
 <h1>Open Log</h1><div class="sub">Current issues and action points requiring attention.</div>
 <div id="error" class="error"></div>
 <section class="report"><div class="report-head"><strong>Open Log Report</strong><span class="count" id="count">Loading...</span></div><div id="list"></div></section>
@@ -32,38 +32,38 @@ h1{font-size:28px;margin:28px 0 5px}.sub{color:var(--muted);font-size:13px;margi
 const SUPABASE_URL="https://tynimykxncdzdxupqhcx.supabase.co",SUPABASE_KEY="sb_publishable_KbjJrEnhwk4pUvsvA16NfA_2R90lxlB",H={"apikey":SUPABASE_KEY,"Authorization":`Bearer ${SUPABASE_KEY}`,"Content-Type":"application/json"};
 const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const fmt=v=>v?new Date(v+"T00:00:00").toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}):"—";
-function buildPdf(){
-  const {jsPDF}=window.jspdf; const doc=new jsPDF({unit:"mm",format:"a4"});
-  const margin=16, width=210-margin*2; let y=18;
-  doc.setFont("helvetica","bold"); doc.setFontSize(18); doc.text("Villa Caetano",margin,y); y+=8;
-  doc.setFontSize(15); doc.text("Open Log Report",margin,y); y+=7;
-  doc.setFont("helvetica","normal"); doc.setFontSize(9); doc.text(document.getElementById("count").textContent,margin,y); y+=9;
+function reportText(){
   const items=[...document.querySelectorAll("#list .issue")];
+  let text=`Villa Caetano — Open Log Report\n${document.getElementById("count").textContent}\n\n`;
   items.forEach((el,idx)=>{
     const title=el.querySelector(".title")?.textContent||"";
     const meta=el.querySelector(".meta")?.textContent||"";
     const desc=el.querySelector(".desc")?.textContent||"";
-    if(y>270){doc.addPage();y=18}
-    doc.setFont("helvetica","bold");doc.setFontSize(11);
-    const titleLines=doc.splitTextToSize(`${idx+1}. ${title}`,width);doc.text(titleLines,margin,y);y+=titleLines.length*5;
-    doc.setFont("helvetica","normal");doc.setFontSize(8);const metaLines=doc.splitTextToSize(meta,width);doc.text(metaLines,margin,y);y+=metaLines.length*4.2+2;
-    if(desc){const lines=doc.splitTextToSize(desc,width);doc.setFontSize(9);doc.text(lines,margin,y);y+=lines.length*4.4+3}
-    doc.setDrawColor(220);doc.line(margin,y,width+margin,y);y+=6;
+    text+=`${idx+1}. ${title}\n${meta}${desc?`\n${desc}`:""}\n\n`;
   });
-  return doc;
+  return text.trim();
 }
-async function shareReport(){
+async function shareImage(){
   try{
-    const doc=buildPdf(); const blob=doc.output("blob");
-    const file=new File([blob],"Villa-Caetano-Open-Log.pdf",{type:"application/pdf"});
-    const shareData={title:"Villa Caetano — Open Log Report",text:`Villa Caetano — Open Log Report\n${document.getElementById("count").textContent}\n${location.href}`,files:[file]};
-    if(navigator.canShare && navigator.canShare({files:[file]}) && navigator.share){await navigator.share(shareData);return}
-    doc.save("Villa-Caetano-Open-Log.pdf");
-    const wa=`https://wa.me/?text=${encodeURIComponent(`Villa Caetano — Open Log Report\n${document.getElementById("count").textContent}\n${location.href}`)}`;
-    window.open(wa,"_blank");
-  }catch(e){if(e?.name!=="AbortError"){console.error(e);alert("Could not create the PDF report.")}}
+    const report=document.querySelector(".report");
+    const canvas=await html2canvas(report,{scale:Math.min(3,window.devicePixelRatio||2),backgroundColor:getComputedStyle(document.documentElement).getPropertyValue("--card").trim()||"#ffffff",useCORS:true,logging:false});
+    const blob=await new Promise(resolve=>canvas.toBlob(resolve,"image/jpeg",0.94));
+    if(!blob) throw new Error("Could not create image");
+    const file=new File([blob],"Villa-Caetano-Open-Log.jpg",{type:"image/jpeg"});
+    const data={title:"Villa Caetano — Open Log Report",text:"Villa Caetano — Open Log Report",files:[file]};
+    if(navigator.share && navigator.canShare && navigator.canShare({files:[file]})){await navigator.share(data);return}
+    const url=URL.createObjectURL(blob); const a=document.createElement("a");a.href=url;a.download=file.name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  }catch(e){if(e?.name!=="AbortError"){console.error(e);alert("Could not create the report image.")}}
 }
-document.getElementById("shareBtn").addEventListener("click",shareReport);
+async function shareText(){
+  try{
+    const text=reportText();
+    if(navigator.share){await navigator.share({title:"Villa Caetano — Open Log Report",text});return}
+    const wa=`https://wa.me/?text=${encodeURIComponent(text)}`;window.open(wa,"_blank");
+  }catch(e){if(e?.name!=="AbortError"){console.error(e);alert("Could not share the report text.")}}
+}
+document.getElementById("shareImageBtn").addEventListener("click",shareImage);
+document.getElementById("shareTextBtn").addEventListener("click",shareText);
 async function load(){try{
  const r=await fetch(`${SUPABASE_URL}/rest/v1/issues?select=*&status=neq.Resolved&order=priority.asc,date_reported.asc`,{headers:H});if(!r.ok)throw Error(await r.text());
  const a=await r.json();document.getElementById("count").textContent=`${a.length} open item${a.length===1?"":"s"}`;

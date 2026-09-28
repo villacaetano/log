@@ -67,10 +67,10 @@ html[data-theme=dark] .badge.high{background:#482523;color:#f0aaa4}
 .resolution{margin-top:11px;padding:11px 13px;overflow-wrap:anywhere;word-break:break-word;white-space:pre-wrap;border-left:3px solid var(--ok);background:var(--soft);font-size:12px}
 .empty{text-align:center;color:var(--muted);padding:35px 10px}
 .error{display:none;background:var(--danger-bg);color:var(--danger);border:1px solid var(--danger);padding:13px;border-radius:12px;margin-bottom:15px;font-size:13px}
-.modal-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.48);z-index:20;align-items:center;justify-content:center;padding:20px}
-.modal{max-width:520px;width:100%;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px;box-shadow:0 20px 60px rgba(0,0,0,.25)}
-.modal h2{font-size:18px;margin:0 0 7px}.modal p{font-size:13px;color:var(--muted);margin:0 0 15px}
-.modal textarea{min-height:120px}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}
+.modal-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.62);z-index:9999;align-items:center;justify-content:center;padding:20px;overflow-y:auto;overscroll-behavior:contain}
+.modal{max-width:520px;width:min(100%,520px);background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:18px;padding:22px;box-shadow:0 20px 60px rgba(0,0,0,.35);position:relative;z-index:10000}
+.modal h2{font-size:18px;margin:0 0 7px;color:var(--text)}.modal p{font-size:13px;color:var(--muted);margin:0 0 15px}
+.modal textarea{min-height:120px}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}.modal-actions .btn{min-height:42px}.modal-actions .confirm-delete{min-width:120px}
 footer{text-align:center;color:var(--muted);font-size:12px;padding:30px 0 10px}
 @media(max-width:900px){.grid{grid-template-columns:1fr}.filterbar{grid-template-columns:1fr 1fr 1fr}.filterbar input{grid-column:1/-1}}
 @media(max-width:600px){.container{padding:10px}header{padding:18px;flex-direction:column;align-items:flex-start}.header-right{text-align:left;width:100%}.header-controls{justify-content:flex-start}.logo{width:190px}.page-head{align-items:flex-start;flex-direction:column}.actions{width:100%}.actions .btn{flex:1;justify-content:center}.filterbar{grid-template-columns:1fr}.filterbar input{grid-column:auto}.row2{grid-template-columns:1fr}.issue-top{flex-direction:column}.badges{justify-content:flex-start}}
@@ -79,11 +79,13 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:30px 0 10px}
   header{padding:12px 14px;border-radius:14px;gap:8px}.logo{width:150px;max-height:55px}
   .header-right{width:auto;align-self:flex-end}.header-controls{gap:7px}.status{font-size:11px;padding:5px 9px}.last-sync{font-size:10px;margin-top:3px}
   .page-head{margin:10px 0 8px}.page-head h1{font-size:22px;margin:0}.subtitle{font-size:11px;line-height:1.35}
-  .page-head .actions{margin-top:7px}.page-head .actions .btn{width:100%;padding:8px 10px;font-size:12px}
-  .grid{display:block}.grid>.card:nth-child(2){display:none}
-  .card{padding:13px;border-radius:14px}.card-title{font-size:16px;margin-bottom:4px}.card-sub{font-size:11px;line-height:1.35;margin-bottom:9px}
-  .field{margin-bottom:8px}.field label{font-size:10px;margin-bottom:4px}input,select,textarea{font-size:12px;padding:8px 9px;border-radius:8px}textarea{min-height:60px}
+  .page-head .actions{margin-top:7px;width:auto;align-self:flex-end}.page-head .actions .btn{width:auto;flex:0 0 auto;padding:7px 9px;font-size:11px}
+  .grid{display:block}.grid>.card:nth-child(2){display:block}
+  .card{padding:16px;border-radius:14px}.card-title{font-size:17px;margin-bottom:5px}.card-sub{font-size:12px;line-height:1.4;margin-bottom:12px}
+  .field{margin-bottom:10px}.field label{font-size:11px;margin-bottom:4px}input,select,textarea{font-size:13px;padding:9px 10px;border-radius:8px}textarea{min-height:78px}
   .row2{gap:8px}.form-actions{margin-top:8px}.form-actions .btn{padding:9px 11px;font-size:12px}
+  .issue-list{gap:8px}.issue{padding:13px}.issue-title{font-size:14px}.issue-desc{font-size:12px;line-height:1.5}.issue-meta{font-size:10px}.badge{font-size:10px;padding:5px 7px}.filterbar{gap:7px}.filterbar select,.filterbar input{padding:8px 9px}.actions-row{margin-top:9px;padding-top:9px}.small-btn{min-width:62px;padding:7px 8px}.small-btn.resolve{min-width:100px;height:38px}.more-btn{width:36px;height:36px}.empty{padding:25px 8px}.form-actions .btn{padding:9px 11px;font-size:12px}
+  .modal-backdrop{padding:14px}.modal{padding:18px;border-radius:14px}.modal-actions{flex-direction:column-reverse}.modal-actions .btn{width:100%;justify-content:center}.modal-actions .confirm-delete{min-width:0}
   footer{padding:12px 0 5px;font-size:10px}
 }
 ''</style>
@@ -320,6 +322,16 @@ confirmDelete.onclick=async()=>{
   update();themeToggle.onclick=()=>{const d=document.documentElement.getAttribute("data-theme")==="dark";const n=d?"light":"dark";document.documentElement.setAttribute("data-theme",n);localStorage.setItem("vc-theme",n);update()};
 })();
 dateReported.value=today();
+
+// Close dialogs safely without interfering with buttons inside them.
+[resolveModal,deleteModal].forEach(modal=>{
+  modal.addEventListener("click",e=>{if(e.target===modal){modal.style.display="none";if(modal===resolveModal)resolvingId=null;if(modal===deleteModal)deletingId=null}});
+});
+document.addEventListener("keydown",e=>{
+  if(e.key!=="Escape")return;
+  resolveModal.style.display="none";deleteModal.style.display="none";resolvingId=null;deletingId=null;
+});
+
 loadIssues();
 setInterval(loadIssues,5*60*1000);
 </script>
