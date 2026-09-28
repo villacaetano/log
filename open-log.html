@@ -8,22 +8,23 @@
 html[data-theme=dark]{--bg:#151816;--card:#1e2421;--text:#eef2ef;--muted:#9ba59f;--border:#343d38;--accent:#9bc5af;--soft:#26352d;--shadow:0 8px 30px rgba(0,0,0,.2)}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.container{max-width:1100px;margin:auto;padding:28px}
 header,.report{background:var(--card);border:1px solid var(--border);box-shadow:var(--shadow);border-radius:18px}
-header{padding:22px 26px;display:flex;justify-content:space-between;align-items:center}.logo{width:210px;max-height:80px;object-fit:contain;object-position:left}.actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.btn{padding:9px 13px;border:1px solid var(--border);border-radius:10px;background:var(--card);color:var(--text);font-weight:700;text-decoration:none;cursor:pointer}.btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
-h1{font-size:28px;margin:28px 0 5px}.sub{color:var(--muted);font-size:13px;margin-bottom:18px}.report{padding:22px}.report-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.count{font-weight:800;color:var(--accent)}.issue{padding:19px 0;border-bottom:1px solid var(--border);overflow:hidden}.issue:last-child{border-bottom:0}.top{display:flex;justify-content:space-between;align-items:flex-start;gap:18px}.top>div:first-child{min-width:0}.title{font-size:17px;font-weight:800;line-height:1.35;overflow-wrap:anywhere;word-break:break-word}.meta{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.45;overflow-wrap:anywhere}.badge{display:inline-block;padding:5px 9px;border-radius:999px;background:var(--soft);color:var(--accent);font-size:11px;font-weight:800}.high{background:#f7e1de;color:#8e332d}.medium{background:#f1ead6;color:#79611b}.low{background:var(--soft)}.desc{font-size:13px;line-height:1.6;margin-top:12px;overflow-wrap:anywhere;word-break:break-word;white-space:pre-wrap}.resolution{margin-top:10px;padding:10px 12px;overflow-wrap:anywhere;word-break:break-word;white-space:pre-wrap;background:var(--soft);border-left:3px solid var(--accent);font-size:12px}.empty{text-align:center;color:var(--muted);padding:40px}.error{display:none;color:#a33b35;background:#fff1f0;border:1px solid #f0c8c5;padding:12px;border-radius:10px;margin-top:15px}
+header{padding:22px 26px;display:flex;justify-content:space-between;align-items:center}.logo{width:210px;max-height:80px;object-fit:contain;object-position:left}.actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.btn{padding:9px 13px;border:1px solid var(--border);border-radius:10px;background:var(--card);color:var(--text);font-weight:700;text-decoration:none;cursor:pointer}.share-wrap{position:relative}.share-menu{display:none;position:absolute;right:0;top:calc(100% + 7px);z-index:50;min-width:170px;padding:6px;background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:0 14px 35px rgba(0,0,0,.18)}.share-menu.open{display:block}.share-menu button{display:block;width:100%;border:0;background:transparent;color:var(--text);padding:10px 11px;text-align:left;border-radius:8px;cursor:pointer;font:inherit;font-size:12px;font-weight:700}.share-menu button:hover{background:var(--soft)}.btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+h1{font-size:28px;margin:28px 0 5px}.sub{color:var(--muted);font-size:13px;margin-bottom:18px}.report{padding:22px}.report-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.count{font-weight:800;color:var(--accent)}.issue{padding:16px 0;border-bottom:1px solid var(--border);overflow:hidden}.issue:last-child{border-bottom:0}.top{display:flex;justify-content:space-between;align-items:flex-start;gap:18px}.top>div:first-child{min-width:0}.title{font-size:17px;font-weight:800;line-height:1.35;overflow-wrap:anywhere;word-break:break-word}.meta{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.45;overflow-wrap:anywhere}.badge{display:inline-block;padding:5px 9px;border-radius:999px;background:var(--soft);color:var(--accent);font-size:11px;font-weight:800} .type-issue{background:#fff0a8;color:#6b5600}.type-action-point{background:#cfe4ff;color:#164f86}.type-note{background:#cfeecf;color:#1d6b35}html[data-theme=dark] .type-issue{background:#5a4d18;color:#ffe98a}html[data-theme=dark] .type-action-point{background:#203d5c;color:#9ccaff}html[data-theme=dark] .type-note{background:#1e4a2b;color:#a7e3b4}.high{background:#f7e1de;color:#8e332d}.medium{background:#f1ead6;color:#79611b}.low{background:var(--soft)}.desc{font-size:13px;line-height:1.5;margin-top:10px;overflow-wrap:anywhere;word-break:break-word;white-space:pre-wrap}.resolution{margin-top:10px;padding:10px 12px;overflow-wrap:anywhere;word-break:break-word;white-space:pre-wrap;background:var(--soft);border-left:3px solid var(--accent);font-size:12px}.empty{text-align:center;color:var(--muted);padding:40px}.error{display:none;color:#a33b35;background:#fff1f0;border:1px solid #f0c8c5;padding:12px;border-radius:10px;margin-top:15px}
 @media(max-width:700px){.container{padding:14px}header{padding:18px;flex-direction:column;align-items:flex-start;gap:15px}.actions{width:100%;justify-content:flex-start}.top{flex-direction:row}.top>div:first-child{min-width:0;flex:1}.top>div:last-child{width:auto;flex:0 0 auto}}
 
 @media(max-width:600px){
   .container{padding:8px 10px 14px}.report{padding:11px;border-radius:13px}header{padding:10px 12px;border-radius:14px;gap:7px;flex-direction:row;align-items:center}.logo{width:138px;max-height:48px}
-  .actions{gap:4px;width:auto;justify-content:flex-end;flex-wrap:wrap}.actions .btn{padding:5px 7px;font-size:9px;border-radius:7px}.share-main{font-size:9px}
-  h1{font-size:21px;margin:11px 0 3px}.sub{font-size:11px;margin-bottom:8px}.report-head{margin-bottom:6px;font-size:11px}.count{font-size:10px}.issue{padding:9px 0}.top{flex-direction:row;align-items:flex-start;gap:6px}.top>div:first-child{min-width:0;flex:1}.top>div:last-child{width:auto;flex:0 0 auto}.title{font-size:12px;line-height:1.3}.meta{font-size:9px;margin-top:2px;line-height:1.3}.badge{padding:3px 5px;font-size:8px;white-space:nowrap}.desc{font-size:10px;line-height:1.35;margin-top:5px}
+  .actions{gap:4px;width:auto;justify-content:flex-end;flex-wrap:wrap}.actions .btn{padding:5px 7px;font-size:9px;border-radius:7px}.share-main{font-size:9px}.share-menu{right:0;min-width:155px}.share-menu button{font-size:11px;padding:9px 10px}
+  h1{font-size:21px;margin:11px 0 3px}.sub{font-size:11px;margin-bottom:8px}.report-head{margin-bottom:6px;font-size:11px}.count{font-size:10px}.issue{padding:8px 0}.top{flex-direction:row;align-items:flex-start;gap:6px}.top>div:first-child{min-width:0;flex:1}.top>div:last-child{width:auto;flex:0 0 auto}.title{font-size:12px;line-height:1.3}.meta{font-size:9px;margin-top:2px;line-height:1.3}.badge{padding:3px 5px;font-size:8px;white-space:nowrap}.desc{font-size:10px;line-height:1.3;margin-top:4px}
 }
 @media print{header .actions,.sub{display:none!important}.container{max-width:none;padding:0}.report{box-shadow:none;border:0}body{background:#fff}}
 ''</style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
 <main class="container">
-<header><img id="logo" class="logo" src="assets/black-logo.png" alt="Villa Caetano"><div class="actions"><a class="btn" href="index.html">← Log</a><button class="btn" id="theme">☾</button><button class="btn primary share-main" id="shareImageBtn" type="button">↗ Share Image</button><button class="btn" id="shareTextBtn" type="button">☷ Share Text</button><button class="btn" onclick="window.print()">Print</button></div></header>
+<header><img id="logo" class="logo" src="assets/black-logo.png" alt="Villa Caetano"><div class="actions"><a class="btn" href="index.html">← Log</a><button class="btn" id="theme">☾</button><div class="share-wrap"><button class="btn primary share-main" id="shareBtn" type="button">↗ Share</button><div class="share-menu" id="shareMenu"><button type="button" id="shareImageBtn">▧ Share Image</button><button type="button" id="sharePdfBtn">▤ Share PDF</button><button type="button" id="shareTextBtn">☷ Share Text</button><button type="button" id="printBtn">▣ Print</button></div></div></div></header>
 <h1>Open Log</h1><div class="sub">Current issues and action points requiring attention.</div>
 <div id="error" class="error"></div>
 <section class="report"><div class="report-head"><strong>Open Log Report</strong><span class="count" id="count">Loading...</span></div><div id="list"></div></section>
@@ -34,7 +35,7 @@ const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&
 const fmt=v=>v?new Date(v+"T00:00:00").toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}):"—";
 function reportText(){
   const items=[...document.querySelectorAll("#list .issue")];
-  let text=`Villa Caetano — Open Log Report\n${document.getElementById("count").textContent}\n\n`;
+  let text=`View Villa Caetano Open Log\n${document.getElementById("count").textContent}\n\n`;
   items.forEach((el,idx)=>{
     const title=el.querySelector(".title")?.textContent||"";
     const meta=el.querySelector(".meta")?.textContent||"";
@@ -43,31 +44,88 @@ function reportText(){
   });
   return text.trim();
 }
+
+function currentLogoDataUrl(){
+  return new Promise((resolve,reject)=>{
+    const img=document.getElementById("logo");
+    const canvas=document.createElement("canvas");
+    const w=600,h=Math.max(1,Math.round(600*(img.naturalHeight||1)/(img.naturalWidth||600)));
+    canvas.width=w;canvas.height=h;
+    const ctx=canvas.getContext("2d");
+    const copy=new Image();copy.onload=()=>{ctx.drawImage(copy,0,0,w,h);resolve(canvas.toDataURL("image/png"));};copy.onerror=reject;copy.src=img.src;
+  });
+}
+
+async function buildShareImage(){
+  const report=document.querySelector(".report");
+  const sheet=document.createElement("div");
+  sheet.style.cssText=`position:absolute;left:-10000px;top:0;width:${Math.max(report.offsetWidth,360)}px;background:${getComputedStyle(document.documentElement).getPropertyValue("--card").trim()||"#fff"};color:${getComputedStyle(document.documentElement).getPropertyValue("--text").trim()||"#202321"};padding:24px;border-radius:18px;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif`;
+  const logo=document.createElement("img");logo.src=document.getElementById("logo").src;logo.style.cssText="display:block;width:180px;max-height:65px;object-fit:contain;object-position:left;margin:0 0 18px";
+  const clone=report.cloneNode(true);clone.style.boxShadow="none";clone.style.width="100%";
+  sheet.append(logo,clone);document.body.appendChild(sheet);
+  try{return await html2canvas(sheet,{scale:Math.min(3,window.devicePixelRatio||2),backgroundColor:getComputedStyle(document.documentElement).getPropertyValue("--card").trim()||"#fff",useCORS:true,logging:false});}
+  finally{sheet.remove();}
+}
+
 async function shareImage(){
   try{
-    const report=document.querySelector(".report");
-    const canvas=await html2canvas(report,{scale:Math.min(3,window.devicePixelRatio||2),backgroundColor:getComputedStyle(document.documentElement).getPropertyValue("--card").trim()||"#ffffff",useCORS:true,logging:false});
+    const canvas=await buildShareImage();
     const blob=await new Promise(resolve=>canvas.toBlob(resolve,"image/jpeg",0.94));
-    if(!blob) throw new Error("Could not create image");
+    if(!blob)throw new Error("Could not create image");
     const file=new File([blob],"Villa-Caetano-Open-Log.jpg",{type:"image/jpeg"});
-    const data={title:"Villa Caetano — Open Log Report",text:"Villa Caetano — Open Log Report",files:[file]};
-    if(navigator.share && navigator.canShare && navigator.canShare({files:[file]})){await navigator.share(data);return}
-    const url=URL.createObjectURL(blob); const a=document.createElement("a");a.href=url;a.download=file.name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+    const data={title:"View Villa Caetano Open Log",text:"View Villa Caetano Open Log",files:[file]};
+    if(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share(data);return;}
+    const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download=file.name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
   }catch(e){if(e?.name!=="AbortError"){console.error(e);alert("Could not create the report image.")}}
 }
+
+async function sharePdf(){
+  try{
+    if(!window.jspdf?.jsPDF)throw new Error("PDF library unavailable");
+    const {jsPDF}=window.jspdf;const doc=new jsPDF({unit:"mm",format:"a4"});
+    const dark=document.documentElement.getAttribute("data-theme")==="dark";
+    const logoData=await currentLogoDataUrl();
+    doc.addImage(logoData,"PNG",14,12,55,18);
+    doc.setFontSize(18);doc.text("Villa Caetano — Open Log",14,38);
+    doc.setFontSize(10);doc.setTextColor(dark?220:90);doc.text(document.getElementById("count").textContent,14,44);
+    let y=53;
+    const items=[...document.querySelectorAll("#list .issue")];
+    items.forEach((el,idx)=>{
+      const title=el.querySelector(".title")?.textContent||"";const meta=el.querySelector(".meta")?.textContent||"";const desc=el.querySelector(".desc")?.textContent||"";
+      const body=`${idx+1}. ${title}\n${meta}${desc?`\n${desc}`:""}`;
+      const lines=doc.splitTextToSize(body,180);const h=lines.length*5+7;
+      if(y+h>282){doc.addPage();y=18;}
+      doc.setDrawColor(220,220,220);doc.line(14,y-3,196,y-3);doc.setTextColor(dark?238:32);doc.setFontSize(10);doc.text(lines,14,y+2);y+=h;
+    });
+    const blob=doc.output("blob");const file=new File([blob],"Villa-Caetano-Open-Log.pdf",{type:"application/pdf"});
+    if(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({title:"View Villa Caetano Open Log",text:"View Villa Caetano Open Log",files:[file]});return;}
+    const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download=file.name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  }catch(e){if(e?.name!=="AbortError"){console.error(e);alert("Could not create the PDF.")}}
+}
+
 async function shareText(){
   try{
     const text=reportText();
-    if(navigator.share){await navigator.share({title:"Villa Caetano — Open Log Report",text});return}
+    if(navigator.share){await navigator.share({title:"View Villa Caetano Open Log",text});return;}
     const wa=`https://wa.me/?text=${encodeURIComponent(text)}`;window.open(wa,"_blank");
   }catch(e){if(e?.name!=="AbortError"){console.error(e);alert("Could not share the report text.")}}
 }
+
+const shareBtn=document.getElementById("shareBtn"),shareMenu=document.getElementById("shareMenu");
+shareBtn.addEventListener("click",e=>{e.stopPropagation();shareMenu.classList.toggle("open")});
+document.addEventListener("click",()=>shareMenu.classList.remove("open"));
 document.getElementById("shareImageBtn").addEventListener("click",shareImage);
+document.getElementById("sharePdfBtn").addEventListener("click",sharePdf);
 document.getElementById("shareTextBtn").addEventListener("click",shareText);
+document.getElementById("printBtn").addEventListener("click",()=>window.print());
+
 async function load(){try{
- const r=await fetch(`${SUPABASE_URL}/rest/v1/issues?select=*&status=neq.Resolved&order=priority.asc,date_reported.asc`,{headers:H});if(!r.ok)throw Error(await r.text());
- const a=await r.json();document.getElementById("count").textContent=`${a.length} open item${a.length===1?"":"s"}`;
- document.getElementById("list").innerHTML=a.length?a.map(i=>`<article class="issue"><div class="top"><div><div class="title">${esc(i.title)}</div><div class="meta">${esc(i.entry_type||"Issue")} · Reported ${fmt(i.date_reported)} · Due ${fmt(i.due_date)}</div></div><div><span class="badge ${String(i.priority).toLowerCase()}">${esc(i.priority)} priority</span> <span class="badge">${esc(i.status)}</span></div></div>${i.description?`<div class="desc">${esc(i.description)}</div>`:""}</article>`).join(""):`<div class="empty">No open items. Everything is currently resolved.</div>`;
+ const r=await fetch(`${SUPABASE_URL}/rest/v1/issues?select=*&status=neq.Resolved`,{headers:H});if(!r.ok)throw Error(await r.text());
+ const a=await r.json();
+ const rank={High:0,Medium:1,Low:2};
+ a.sort((x,y)=>(rank[x.priority]??9)-(rank[y.priority]??9)||String(x.date_reported||"").localeCompare(String(y.date_reported||"")));
+ document.getElementById("count").textContent=`${a.length} open item${a.length===1?"":"s"}`;
+ document.getElementById("list").innerHTML=a.length?a.map(i=>`<article class="issue"><div class="top"><div><div class="title">${esc(i.title)}</div><div class="meta">${esc(i.entry_type||"Issue")} · Reported ${fmt(i.date_reported)} · Due ${fmt(i.due_date)}</div></div><div><span class="badge ${String(i.priority).toLowerCase()}">${esc(i.priority)} priority</span> <span class="badge type-${String(i.entry_type||"Issue").toLowerCase().replace(/\s+/g,"-")}">${esc(i.entry_type||"Issue")}</span> <span class="badge">${esc(i.status)}</span></div></div>${i.description?`<div class="desc">${esc(i.description)}</div>`:""}</article>`).join(""):`<div class="empty">No open items. Everything is currently resolved.</div>`;
 }catch(e){document.getElementById("count").textContent="Unable to load";document.getElementById("error").style.display="block";document.getElementById("error").textContent="Unable to load the open log report: "+e.message;console.error(e)}}
 const savedTheme=localStorage.getItem("vc-theme");
 const darkTheme=savedTheme==="dark"||(savedTheme===null&&matchMedia("(prefers-color-scheme:dark)").matches);

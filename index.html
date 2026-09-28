@@ -38,13 +38,16 @@ html[data-theme=dark] .btn.primary{color:#151816}
 .card-title{font-size:17px;font-weight:780;margin-bottom:5px;letter-spacing:-.01em}.card-sub{font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.5}
 label{display:block;font-size:12px;font-weight:700;margin:0 0 7px}
 input,textarea,select{width:100%;padding:12px 13px;border:1px solid var(--border);border-radius:10px;background:var(--card);color:var(--text);font:inherit}
-textarea{resize:vertical;min-height:116px;line-height:1.5}.field{margin-bottom:16px}.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+textarea{resize:vertical;min-height:116px;line-height:1.5}.field{margin-bottom:13px}.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .form-actions{display:flex;gap:8px;margin-top:4px}.form-actions .btn{flex:1;justify-content:center}
+.row3{display:grid;grid-template-columns:1fr 1fr 48px;gap:8px}.row3 .field{min-width:0}.date-icon-wrap{position:relative;width:42px;height:38px}.date-icon-btn{width:42px;height:38px;padding:0;border:1px solid var(--border);border-radius:9px;background:var(--card);color:var(--text);cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center}.date-icon-btn svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.date-icon-wrap input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;padding:0;border:0}.date-icon-wrap:focus-within .date-icon-btn{outline:2px solid color-mix(in srgb,var(--accent) 35%,transparent);outline-offset:1px}
+.badge.type-issue{background:#fff0a8;color:#6b5600}.badge.type-action-point{background:#cfe4ff;color:#164f86}.badge.type-note{background:#cfeecf;color:#1d6b35}
+html[data-theme=dark] .badge.type-issue{background:#5a4d18;color:#ffe98a}html[data-theme=dark] .badge.type-action-point{background:#203d5c;color:#9ccaff}html[data-theme=dark] .badge.type-note{background:#1e4a2b;color:#a7e3b4}
 .filterbar{display:grid;grid-template-columns:150px 150px 150px 1fr;gap:9px;margin-bottom:15px}
-.issue-list{display:flex;flex-direction:column;gap:10px}
-.issue{border:1px solid var(--border);border-radius:15px;padding:17px 18px;background:var(--table);overflow:visible}.issue:hover{border-color:color-mix(in srgb,var(--accent) 30%,var(--border));box-shadow:0 5px 18px rgba(20,25,22,.05)}
+.issue-list{display:flex;flex-direction:column;gap:7px}.resolved-divider{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:10px 2px 3px}.resolved-divider::before,.resolved-divider::after{content:"";height:1px;background:var(--border);flex:1}
+.issue{border:1px solid var(--border);border-radius:13px;padding:13px 15px;background:var(--table);overflow:visible}.issue:hover{border-color:color-mix(in srgb,var(--accent) 30%,var(--border));box-shadow:0 5px 18px rgba(20,25,22,.05)}
 .issue-top{display:flex;justify-content:space-between;gap:18px;align-items:flex-start}.issue-title{font-weight:780;font-size:15px;line-height:1.35;overflow-wrap:anywhere;word-break:break-word}
-.issue-meta{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.45}.issue-desc{font-size:13px;margin-top:11px;line-height:1.6;overflow-wrap:anywhere;word-break:break-word;white-space:pre-wrap}
+.issue-meta{font-size:11px;color:var(--muted);margin-top:4px;line-height:1.35}.issue-desc{font-size:12px;margin-top:8px;line-height:1.5;overflow-wrap:anywhere;word-break:break-word;white-space:pre-wrap}
 .badges{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;max-width:48%}.badge{font-size:12px;font-weight:750;padding:6px 10px;border-radius:999px;background:var(--soft);color:var(--accent)}
 .badge.high{background:#f7e1de;color:#8e332d}.badge.medium{background:#f1ead6;color:#79611b}.badge.low{background:var(--soft)}
 .badge.status-open{background:#e7f3eb;color:#1f7448}.badge.status-progress{background:#e9eef7;color:#405b85}.badge.status-resolved{background:#ececea;color:#6f746f}
@@ -53,7 +56,7 @@ textarea{resize:vertical;min-height:116px;line-height:1.5}.field{margin-bottom:1
 .issue-actions{position:relative;display:flex;align-items:center;gap:7px}
 .more-wrap{position:relative}
 .more-btn{width:40px;height:38px;padding:0;border:1px solid var(--border);border-radius:10px;background:var(--card);color:var(--text);cursor:pointer;font-size:20px;line-height:1}
-.more-menu{position:absolute;right:0;bottom:46px;z-index:20;min-width:130px;padding:6px;background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:0 12px 35px rgba(0,0,0,.16);display:none}
+.more-menu{position:absolute;right:0;bottom:46px;z-index:1000;min-width:130px;padding:6px;background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:0 12px 35px rgba(0,0,0,.16);display:none}
 .more-menu.open{display:block}
 @media(max-width:600px){.more-menu{right:0;bottom:40px;min-width:125px;z-index:100}}
 .more-menu button{display:block;width:100%;border:0;background:transparent;color:var(--text);padding:9px 10px;text-align:left;border-radius:8px;cursor:pointer;font:inherit}
@@ -85,8 +88,8 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:30px 0 10px}
   .grid{display:block}.grid>.card:nth-child(2){display:block}
   .card{padding:16px;border-radius:14px}.card-title{font-size:17px;margin-bottom:5px}.card-sub{font-size:12px;line-height:1.4;margin-bottom:12px}
   .field{margin-bottom:10px}.field label{font-size:11px;margin-bottom:4px}input,select,textarea{font-size:13px;padding:9px 10px;border-radius:8px}textarea{min-height:78px}
-  .row2{gap:8px}.form-actions{margin-top:8px}.form-actions .btn{padding:9px 11px;font-size:12px}
-  .issue-list{gap:8px}.issue{padding:13px}.issue-title{font-size:14px}.issue-desc{font-size:12px;line-height:1.5}.issue-meta{font-size:10px}.badge{font-size:10px;padding:5px 7px}.filterbar{gap:7px}.filterbar select,.filterbar input{padding:8px 9px}.actions-row{margin-top:9px;padding-top:9px}.small-btn{min-width:62px;padding:7px 8px}.small-btn.resolve{min-width:100px;height:38px}.more-btn{width:36px;height:36px}.empty{padding:25px 8px}.form-actions .btn{padding:9px 11px;font-size:12px}
+  .row2{gap:8px}.row3{grid-template-columns:1fr 1fr 42px;gap:7px}.date-icon-wrap,.date-icon-btn{width:38px;height:36px}.date-icon-btn{font-size:16px}.form-actions{margin-top:8px}.form-actions .btn{padding:9px 11px;font-size:12px}
+  .issue-list{gap:6px}.issue{padding:11px 12px}.issue-title{font-size:14px}.issue-desc{font-size:12px;line-height:1.5}.issue-meta{font-size:10px}.badge{font-size:10px;padding:5px 7px}.filterbar{gap:7px}.filterbar select,.filterbar input{padding:8px 9px}.actions-row{margin-top:9px;padding-top:9px}.small-btn{min-width:62px;padding:7px 8px}.small-btn.resolve{min-width:100px;height:38px}.more-btn{width:36px;height:36px}.empty{padding:25px 8px}.form-actions .btn{padding:9px 11px;font-size:12px}
   .modal-backdrop{padding:14px}.modal{padding:18px;border-radius:14px}.modal-actions{flex-direction:column-reverse}.modal-actions .btn{width:100%;justify-content:center}.modal-actions .confirm-delete{min-width:0}
   footer{padding:12px 0 5px;font-size:10px}
 
@@ -115,6 +118,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:30px 0 10px}
   textarea{min-height:66px;height:66px}
   .row2{grid-template-columns:1fr 1fr;gap:8px}
   .row2:last-of-type{grid-template-columns:1fr}
+  .row3{grid-template-columns:1fr 1fr 1.15fr;gap:6px}.row3 .field{margin-bottom:6px}.row3 input,.row3 select{font-size:12px;padding:8px 7px;min-height:36px}.row3 label{font-size:10px;margin-bottom:3px}
   .form-actions{margin-top:7px}.form-actions .btn{min-height:42px;padding:9px 11px;font-size:14px}
   .grid>.card:nth-child(2){padding:13px}
   .grid>.card:nth-child(2) .card-title{font-size:16px}
@@ -124,16 +128,16 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:30px 0 10px}
   .filterbar{grid-template-columns:1fr 1fr;gap:6px;margin-bottom:9px}
   .filterbar select,.filterbar input{font-size:12px;min-height:36px;padding:7px 8px}
   .filterbar input{grid-column:1/-1}
-  .issue-list{gap:7px}
-  .issue{padding:10px 11px;border-radius:11px}
+  .issue-list{gap:5px}
+  .issue{padding:8px 10px;border-radius:10px}
   .issue-top{flex-direction:row;align-items:flex-start;gap:7px}
   .issue-top>div:first-child{min-width:0;flex:1}
   .issue-title{font-size:13px;line-height:1.3}
   .issue-meta{font-size:9px;margin-top:3px;line-height:1.3}
   .badges{flex:0 0 auto;width:auto;max-width:46%;justify-content:flex-end;gap:3px}
   .badge{font-size:9px;padding:4px 5px;white-space:nowrap}
-  .issue-desc{font-size:11px;line-height:1.4;margin-top:6px}
-  .actions-row{margin-top:7px;padding-top:7px}.small-btn{min-width:58px;padding:6px 7px;font-size:10px}.small-btn.resolve{min-width:84px;height:32px;font-size:11px}.more-btn{width:32px;height:32px;font-size:17px}
+  .issue-desc{font-size:10.5px;line-height:1.35;margin-top:5px}
+  .actions-row{margin-top:5px;padding-top:5px}.small-btn{min-width:58px;padding:6px 7px;font-size:10px}.small-btn.resolve{min-width:84px;height:32px;font-size:11px}.more-btn{width:32px;height:32px;font-size:17px}
 }
 ''</style>
 </head>
@@ -164,12 +168,10 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:30px 0 10px}
       <div class="field"><label>Title</label><input id="title" required placeholder="e.g. Pool lights not working, call plumber, or note something"></div>
       <div class="field"><label>Date Reported</label><input id="dateReported" type="date" required></div>
       <div class="field"><label>Details / Note</label><textarea id="description" placeholder="Add the details, note, action required, or anything useful to remember..."></textarea></div>
-      <div class="row2">
+      <div class="row3">
         <div class="field"><label>Type</label><select id="entryType"><option selected>Issue</option><option>Action Point</option><option>Note</option></select></div>
         <div class="field"><label>Priority</label><select id="priority"><option>High</option><option selected>Medium</option><option>Low</option></select></div>
-      </div>
-      <div class="row2">
-        <div class="field"><label>Due Date</label><input id="dueDate" type="date"></div>
+        <div class="field due-field"><label>Due</label><div class="date-icon-wrap"><button class="date-icon-btn" id="dueDateButton" type="button" aria-label="Set due date" title="Set due date"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="15" rx="2"></rect><path d="M7.5 3.5v4M16.5 3.5v4M3.5 9.5h17"></path></svg></button><input id="dueDate" type="date" aria-label="Due date"></div></div>
       </div>
       <div class="form-actions"><button class="btn primary" id="submitBtn" type="submit">＋ Log Item</button><button class="btn" id="cancelBtn" type="button" style="display:none">Cancel</button></div>
     </form>
@@ -256,13 +258,17 @@ function render(){
     return (rank[a.priority]??9)-(rank[b.priority]??9);
   });
 
-  document.getElementById("issueList").innerHTML=filtered.length?filtered.map(i=>{
+  if(!filtered.length){document.getElementById("issueList").innerHTML=`<div class="empty">No issues match your filters.</div>`;return;}
+  let sawResolved=false;
+  const html=[];
+  filtered.forEach(i=>{
     const resolved=i.status==="Resolved";
-    return `<article class="issue ${resolved?"resolved":""}">
+    if(resolved&&!sawResolved&&filtered.some(x=>x.status!=="Resolved")) { html.push(`<div class="resolved-divider">Resolved</div>`); sawResolved=true; }
+    html.push(`<article class="issue ${resolved?"resolved":""}">
       <div class="issue-top">
         <div><div class="issue-title">${esc(i.title)}</div>
         <div class="issue-meta">Reported ${fmt(i.date_reported)} · Due ${fmt(i.due_date)}</div></div>
-        <div class="badges"><span class="badge type-badge">${esc(i.entry_type||"Issue")}</span><span class="badge ${String(i.priority).toLowerCase()}">${esc(i.priority)}</span><span class="badge status-${String(i.status).toLowerCase().replace(/\s+/g,"-")}">${esc(i.status)}</span></div>
+        <div class="badges"><span class="badge type-badge type-${String(i.entry_type||"Issue").toLowerCase().replace(/\s+/g,"-")}">${esc(i.entry_type||"Issue")}</span><span class="badge ${String(i.priority).toLowerCase()}">${esc(i.priority)}</span><span class="badge status-${String(i.status).toLowerCase().replace(/\s+/g,"-")}">${esc(i.status)}</span></div>
       </div>
       ${i.description?`<div class="issue-desc">${esc(i.description)}</div>`:""}
       ${resolved&&i.resolution_note?`<div class="resolution"><strong>Resolution:</strong> ${esc(i.resolution_note)}</div>`:""}
@@ -278,9 +284,22 @@ function render(){
           </div>
         </div>
       </div>
-    </article>`;
-  }).join(""):`<div class="empty">No issues match your filters.</div>`;
+    </article>`);
+  });
+  document.getElementById("issueList").innerHTML=html.join("");
 }
+
+function syncDueDateButton(){
+  const value=dueDate.value;
+  dueDateButton.title=value?`Due date: ${fmt(value)}`:"Set due date";
+  dueDateButton.setAttribute("aria-label",value?`Due date: ${fmt(value)}`:"Set due date");
+}
+dueDateButton.addEventListener("click",()=>{
+  if(typeof dueDate.showPicker==="function") dueDate.showPicker();
+  else dueDate.focus();
+});
+dueDate.addEventListener("change",syncDueDateButton);
+syncDueDateButton();
 
 document.getElementById("issueForm").addEventListener("submit",async e=>{
   e.preventDefault();
@@ -301,12 +320,12 @@ document.getElementById("issueForm").addEventListener("submit",async e=>{
 function editIssue(id){
   const i=issues.find(x=>String(x.id)===String(id));if(!i)return;
   editingId=id;title.value=i.title||"";dateReported.value=i.date_reported||"";description.value=i.description||"";
-  priority.value=i.priority||"Medium";dueDate.value=i.due_date||"";
+  priority.value=i.priority||"Medium";dueDate.value=i.due_date||"";syncDueDateButton();
   entryType.value=i.entry_type||"Issue";formTitle.textContent="Edit Item";submitBtn.textContent="Save Changes";cancelBtn.style.display="inline-flex";
   window.scrollTo({top:0,behavior:"smooth"});
 }
 function resetForm(){
-  editingId=null;document.getElementById("issueForm").reset();dateReported.value=today();entryType.value="Issue";priority.value="Medium";
+  editingId=null;document.getElementById("issueForm").reset();dateReported.value=today();entryType.value="Issue";priority.value="Medium";syncDueDateButton();
   formTitle.textContent="Log an Item";submitBtn.textContent="＋ Log Item";cancelBtn.style.display="none";
 }
 cancelBtn.addEventListener("click",resetForm);
